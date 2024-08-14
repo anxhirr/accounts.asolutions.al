@@ -41,9 +41,7 @@ export function LoginForm({
   }>;
 }) {
   const t = useTranslations();
-
   const searchParams = useSearchParams();
-  const redirectUrl = searchParams.get("redirectUrl");
   const router = useRouter();
   const form = useForm<LoginSchemaType>({
     resolver: zodResolver(schema),
@@ -122,9 +120,7 @@ export function LoginForm({
             <div className='mt-4 text-center text-sm'>
               {t("Dont have an account")}?{" "}
               <Link
-                href={`/signup${
-                  redirectUrl ? `?redirectUrl=${redirectUrl}` : ""
-                }`}
+                href={`/signup?${searchParams.toString()}`}
                 className='underline'
               >
                 {t("Sign up")}
