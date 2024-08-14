@@ -15,7 +15,7 @@ export const AuthWrapper = async ({
   } = await supabase.auth.getUser();
 
   if (condition === "authenticated" && !user) return redirect("/login");
-  if (condition === "unauthenticated" && user) return redirect("/shop");
+  if (condition === "unauthenticated" && user) return redirect("/");
 
   return <>{children}</>;
 };

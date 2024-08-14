@@ -26,8 +26,6 @@ import {
   FormMessage,
 } from "../ui/form";
 const schema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
   email: z.string().email(),
   password: z.string().min(8),
 });
@@ -79,38 +77,6 @@ export function SignupForm({
           </CardHeader>
           <CardContent>
             <div className='grid gap-4'>
-              <div className='grid grid-cols-2 gap-4'>
-                <div className='grid gap-2'>
-                  <FormField
-                    control={form.control}
-                    name='firstName'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("First name")}</FormLabel>
-                        <FormControl>
-                          <Input {...field} placeholder='John' />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <div className='grid gap-2'>
-                  <FormField
-                    control={form.control}
-                    name='lastName'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("Last name")}</FormLabel>
-                        <FormControl>
-                          <Input {...field} placeholder='Doe' />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-              </div>
               <div className='grid gap-2'>
                 <FormField
                   control={form.control}

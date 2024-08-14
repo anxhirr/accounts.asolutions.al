@@ -1,9 +1,8 @@
 "use client";
 
-import { ButtonProps } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { DropdownMenuItem } from "../ui/dropdown-menu";
 
 export const SignOutBtn = ({
   text = "Sign Out",
@@ -17,9 +16,9 @@ export const SignOutBtn = ({
   const t = useTranslations();
 
   return (
-    <DropdownMenuItem onClick={() => performAction()} {...rest}>
+    <Button onClick={() => performAction()} {...rest}>
       <LogOut size={15} className='mr-1' />
       {t(text)}
-    </DropdownMenuItem>
+    </Button>
   );
 };

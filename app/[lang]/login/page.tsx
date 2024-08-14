@@ -11,7 +11,7 @@ async function LoginPage({ searchParams }: Args) {
     const supabase = createClient();
     const { error } = await supabase.auth.signInWithPassword(values);
     if (error) throw error;
-    const path = searchParams.redirectUrl || `/shop`;
+    const path = searchParams.redirectUrl || `/`;
     return { path };
   };
 

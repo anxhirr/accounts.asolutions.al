@@ -1,9 +1,6 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
-import { role } from "./supabase/migrations/schema";
-import { SelectMemberType } from "./supabase/migrations/validation";
-import { Locale } from "./types";
 
 export const locales: Locale[] = ["en", "al"];
 export const defaultLocale = "al";
@@ -91,24 +88,9 @@ export async function middleware(request: NextRequest) {
     } = await supabase.auth.getUser();
 
     const userId = user?.id!;
-    const shopId = request.nextUrl.pathname.split("/")[2];
-    const member = userId // onyl query if user is authenticated
-      ? await supabase //TODO: use drizzle with neon pool to perform query
-          .from("member")
-          .select("*")
-          .eq("userId", userId)
-          .eq("shopId", shopId)
-          .single()
-      : null;
     response = handleI18nRouting(request); // apply i18n routing
-    response.headers.set(
-      "x-memberRole",
-      (member?.data as SelectMemberType)?.role || role.enumValues[0] // default to the first role, probably could be improved
-    );
-    response.headers.set("x-shopId", shopId);
     response.headers.set("x-userId", userId);
     response.headers.set("x-userEmail", user?.email!);
-
     return response;
   } catch (e) {
     // If you are here, a Supabase client could not be created!
