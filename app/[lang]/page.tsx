@@ -1,8 +1,9 @@
 import { SignOutBtn } from "@/components/button";
+import { AuthWrapper } from "@/components/wrappers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
-export default async function Page() {
+async function Page() {
   const signOut = async () => {
     "use server";
 
@@ -17,3 +18,9 @@ export default async function Page() {
     </div>
   );
 }
+
+export default () =>
+  AuthWrapper({
+    children: <Page />,
+    condition: "authenticated",
+  });
