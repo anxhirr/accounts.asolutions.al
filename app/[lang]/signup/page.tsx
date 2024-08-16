@@ -1,6 +1,7 @@
 import { SignupForm } from "@/components/form";
 import { AuthWrapper } from "@/components/wrappers";
 import { user as schUser } from "@/supabase/migrations/schema";
+import { setSbCookie } from "@/utils";
 import { db } from "@/utils/supabase/database";
 import { createClient } from "@/utils/supabase/server";
 
@@ -26,6 +27,8 @@ async function SignupPage({ searchParams }: Args) {
         if (!user) return { path: `/login` };
 
         const userId = user.id;
+
+        setSbCookie(data.session!); // TODO: are we sure session is not null?
         await db.insert(schUser).values({
           id: userId, // use same id as auth user
           email: values.email,

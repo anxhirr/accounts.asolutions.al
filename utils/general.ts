@@ -1,8 +1,18 @@
-import { headers } from "next/headers";
+import { Session } from "@supabase/supabase-js";
+import { cookies } from "next/headers";
 
-export const getFromHeaders = () => {
-  const heads = headers();
-  const userId = heads.get("x-userId") as string;
-  const userEmail = heads.get("x-userEmail") as string;
-  return { userId, userEmail };
+export const setSbCookie = (session: Session) => {
+  if (process.env.NODE_ENV === "production") {
+    console.log("Setting sb-auth cookie");
+    cookies().set("sb-auth", JSON.stringify(session), {
+      // cookie options
+      httpOnly: true,
+      secure: true,
+      sameSite: "lax",
+      path: "/",
+      domain: ".asolutions.al",
+      expires: new Date(session?.expires_at?.toString() || 0),
+    });
+    console.log("Cookie set");
+  }
 };
