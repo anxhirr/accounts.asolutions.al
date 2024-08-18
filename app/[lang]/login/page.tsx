@@ -4,7 +4,7 @@ import { setSbCookie } from "@/utils";
 import { createClient } from "@/utils/supabase/server";
 
 type Args = {
-  searchParams: { redirectUrl?: string };
+  searchParams: SearchParams;
 };
 async function LoginPage({ searchParams }: Args) {
   const signIn = async (values: LoginSchemaType) => {
@@ -24,4 +24,5 @@ export default (args: Args) =>
   AuthWrapper({
     children: <LoginPage {...args} />,
     condition: "unauthenticated",
+    ...args,
   });

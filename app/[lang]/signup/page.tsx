@@ -6,7 +6,7 @@ import { db } from "@/utils/supabase/database";
 import { createClient } from "@/utils/supabase/server";
 
 type Args = {
-  searchParams: { redirectUrl?: string };
+  searchParams: SearchParams;
 };
 
 async function SignupPage({ searchParams }: Args) {
@@ -45,4 +45,5 @@ export default (args: Args) =>
   AuthWrapper({
     children: <SignupPage {...args} />,
     condition: "unauthenticated",
+    ...args,
   });
