@@ -1,5 +1,6 @@
 import { LoginForm, LoginSchemaType } from "@/components/form";
 import { AuthWrapper } from "@/components/wrappers";
+import { setSbCookie } from "@/utils";
 import { createClient } from "@/utils/supabase/server";
 
 type Args = {
@@ -11,7 +12,7 @@ async function LoginPage({ searchParams }: Args) {
     const supabase = createClient();
     const { data, error } = await supabase.auth.signInWithPassword(values);
     if (error) throw error;
-    // setSbCookie(data.session);
+    setSbCookie(data.session);
     const path = searchParams.redirectUrl || `/`;
     return { path };
   };

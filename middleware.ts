@@ -48,13 +48,6 @@ export async function middleware(request: NextRequest) {
           );
         },
       },
-      cookieOptions: {
-        httpOnly: true,
-        secure: true,
-        sameSite: "lax",
-        path: "/",
-        domain: ".asolutions.al",
-      },
     }
   );
   // This will refresh session if expired - required for Server Components
