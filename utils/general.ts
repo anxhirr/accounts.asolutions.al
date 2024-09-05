@@ -11,7 +11,7 @@ export const setSbCookie = (session: Session) => {
       sameSite: "lax",
       path: "/",
       domain: ".asolutions.al",
-      expires: new Date(session?.expires_at?.toString() || 0),
+      // expires: new Date(session?.expires_at?.toString() || 0),
     });
     console.log("Cookie set");
   }

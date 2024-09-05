@@ -9,11 +9,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Link, useRouter } from "@/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthApiError } from "@supabase/supabase-js";
 import { useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";

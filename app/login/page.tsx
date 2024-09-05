@@ -1,9 +1,9 @@
 import { LoginForm, LoginSchemaType } from "@/components/form";
 import { AuthWrapper } from "@/components/wrappers";
-import { redirect } from "@/navigation";
 import { setSbCookie } from "@/utils";
 import { createClient } from "@/utils/supabase/server";
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 type Args = {
   searchParams: SearchParams;

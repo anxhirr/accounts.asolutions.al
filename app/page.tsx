@@ -1,7 +1,7 @@
 import { SignOutBtn } from "@/components/button";
 import { AuthWrapper } from "@/components/wrappers";
-import { redirect } from "@/navigation";
 import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
 async function Page() {
   const signOut = async () => {

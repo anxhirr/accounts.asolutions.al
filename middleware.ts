@@ -1,13 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
-import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
 
 export const locales: Locale[] = ["en", "al"];
 export const defaultLocale = "al";
-const handleI18nRouting = createMiddleware({
-  locales,
-  defaultLocale,
-});
 
 export const config = {
   matcher: [
@@ -58,7 +53,6 @@ export async function middleware(request: NextRequest) {
   // issues with users being randomly logged out.
 
   await supabase.auth.getUser();
-  response = handleI18nRouting(request); // apply i18n routing
 
   return response;
 }
